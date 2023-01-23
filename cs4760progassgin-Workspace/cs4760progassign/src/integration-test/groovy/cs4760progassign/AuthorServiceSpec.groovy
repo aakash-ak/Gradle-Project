@@ -14,15 +14,43 @@ class AuthorServiceSpec extends Specification {
 
     private Long setupData() {
         // TODO: Populate valid domain instances and return a valid ID
-        //new Author(...).save(flush: true, failOnError: true)
-        //new Author(...).save(flush: true, failOnError: true)
-        //Author author = new Author(...).save(flush: true, failOnError: true)
-        //new Author(...).save(flush: true, failOnError: true)
-        //new Author(...).save(flush: true, failOnError: true)
-        assert false, "TODO: Provide a setupData() implementation for this generated test suite"
-        //author.id
+        new Author(name:"Stephen King")
+                .addToBooks(new Book(title:"The Stand", publishYear:1978))
+                .addToBooks(new Book(title:"The Shining", publishYear:1977))
+                .save(flush: true, failOnError: true)
+        new Author(name:"Mark Twain")
+                .addToBooks(new Book(title:"Tom Sawyer", publishYear:1876))
+                .addToBooks(new Book(title:"Huckelberry Finn", publishYear:1884))
+                .save(flush: true, failOnError: true)
+        new Author(name:"Stephen King")
+                .addToBooks(new Book(title:"The Stand", publishYear:1978))
+                .addToBooks(new Book(title:"The Shining", publishYear:1977))
+                .save(flush: true, failOnError: true)
+        new Author(name:"Mark Twain")
+                .addToBooks(new Book(title:"Tom Sawyer", publishYear:1876))
+                .addToBooks(new Book(title:"Huckelberry Finn", publishYear:1884))
+                .save(flush: true, failOnError: true)
+        new Author(name:"Stephen King")
+                .addToBooks(new Book(title:"The Stand", publishYear:1978))
+                .addToBooks(new Book(title:"The Shining", publishYear:1977))
+                .save(flush: true, failOnError: true)
     }
-
+    void "test basic Author Book persistence"(){
+        setup:
+        new Author(name:"Stephen King")
+                .addToBooks(new Book(title:"The Stand", publishYear:1978))
+                .addToBooks(new Book(title:"The Shining", publishYear:1977))
+                .save(flush: true, failOnError: true)
+        new Author(name:"Mark Twain")
+                .addToBooks(new Book(title:"Tom Sawyer", publishYear:1876))
+                .addToBooks(new Book(title:"Huckelberry Finn", publishYear:1884))
+                .save(flush: true, failOnError: true)
+        expect:
+        Author.count == 2
+        Book.count == 4
+        Author.findByName("Stephen King").books.size() == 2
+        Author.findByName("Mark Twain").books.size() == 2
+    }
     void "test get"() {
         setupData()
 
