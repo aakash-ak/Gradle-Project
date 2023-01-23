@@ -10,7 +10,7 @@ import org.hibernate.SessionFactory
 
 class BookServiceSpec  extends Specification {
 
-    AuthorService authorService
+    BookService bookService
     SessionFactory sessionFactory
     private Long setupData() {
         // Need to remove all data from tables just in case hibernate is already running.
