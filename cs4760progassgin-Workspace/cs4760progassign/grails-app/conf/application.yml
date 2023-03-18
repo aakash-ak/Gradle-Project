@@ -8,6 +8,12 @@ grails:
             # Whether to translate GORM events into Reactor events
             # Disabled by default for performance reasons
             events: false
+            ---
+            grails:
+                controllers:
+                    upload:
+                        maxFileSize: 2097152
+                        maxRequestSize: 2097152
 info:
     app:
         name: '@info.app.name@'
@@ -25,6 +31,7 @@ spring:
         restart:
             additional-exclude:
                 - '*.gsp'
+                -
                 - '**/*.gsp'
                 - '*.gson'
                 - '**/*.gson'
